@@ -1,0 +1,147 @@
+﻿@model part_1.Models.get_cliams
+
+@{
+    ViewData["Title"] = "Status";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Monthly Claim</title>
+
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+            font-size: 13px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .fa-check {
+            color: green;
+            cursor: pointer;
+        }
+
+        .fa-times {
+            color: red;
+            cursor: pointer;
+        }
+
+            .fa-check:hover, .fa-times:hover {
+                transform: scale(1.1);
+            }
+
+        .status-pending {
+            color: orange;
+        }
+
+        .status-approved {
+            color: green;
+        }
+
+        .status-rejected {
+            color: red;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <br />
+        <h2>Your Submitted Claims</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Email</th>
+                    <th>Module</th>
+                    <th>From</th>
+                    <th>To </th>
+                    <th>Hours Worked</th>
+                    <th>Hour Rate</th>
+                    <th>Total</th>
+                    <th>Description</th>
+                    <th>Document</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (int count = 0; count < Model.username.Count; count++)
+                {
+                    <tr>
+                        <td>@Model.no[count]</td>
+                        <td>@Model.username[count]</td>
+                        <td>@Model.module[count]</td>
+                        <td>@Model.claim_date[count]</td>
+                        <td>@Model.period[count]</td>
+                        <td>@Model.hours_worked[count]</td>
+                        <td>@Model.hour_rate[count]</td>
+                        <td>@Model.total[count]</td>
+                        <td>@Model.description[count]</td>
+                        <td>
+                            @if (@Model.supporting_document[count]=="" || @Model.supporting_document[count] == "none")
+                            {
+                                <span>no file</span>
+                            }
+                            else
+                            {
+                                <a href="@Url.Content("~/pdf/" + @Model.supporting_document[count])" target="_blank">View Document</a>
+                            }
+                        </td>
+                        <td>
+
+                            @Model.status[count]
+                            
+
+                           
+                      
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

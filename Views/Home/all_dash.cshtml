@@ -1,0 +1,128 @@
+﻿@model part_1.Models.on_load
+
+@{
+    ViewData["Title"] = "Contract Monthly Claim System";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+     
+
+        .container {
+           width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1, h2 {
+            color: #333;
+            width:100%;
+            text-align:center;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+
+        .references {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+        }
+
+        .image-right {
+            flex: 1;
+            max-width: 400px;
+          
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+            perspective: 1000px;
+        }
+
+            .image-right img {
+                width: 100%;
+                border-radius: 8px;
+            }
+
+        .cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+            .cta a {
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                font-size: 1.2em;
+            }
+
+                .cta a:hover {
+                    background-color: #0056b3;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 style="color:gray;font-size:24px">Hey @Model.name our @Model.role</h1>
+
+        <div style="display:flex">
+            <!-- Right Image with 3D Effect -->
+            <div class="image-left" style="display: flex; justify-content: center; align-items: center;">
+                <img src="@Url.Content("~/images/claim_system.jpg")"
+                     alt="Contract Monthly Claim System"
+                     style="width: 200px; height: 200px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); object-fit: cover;">
+            </div>
+
+
+
+        <div class="references">
+           
+            
+            
+            <p>
+
+                <h1>Welcome to the Contract Monthly Claim System</h1>
+            <p>This system is designed to streamline the monthly claim submission process for lecturers. By providing an intuitive platform for submitting, verifying, and approving claims, it ensures efficiency and accuracy in managing lecturer claims.</p>
+            <h2>Key Features:</h2>
+            <ul>
+                <li>Easy claim submission with document uploads.</li>
+                <li>Real-time claim status tracking.</li>
+                <li>Approval workflows for coordinators and managers.</li>
+                <li>Secure login with role-based access.</li>
+            </ul>
+            <div class="cta">
+
+                        @if (@Model.role == "lecturer")
+                        {
+                            <a asp-action="claims">Start Claim Process</a>
+                        }
+                        else
+                        {
+                        <a asp-action="approve">Start to approve Claim Process</a>
+                        }
+
+               
+            </div>
+
+            </p>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
